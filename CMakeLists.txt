@@ -1,9 +1,9 @@
 cmake_minimum_required (VERSION 2.6)
-project (myExcutable)
+project (myExecutable)
 
 include_directories ("${PROJECT_SOURCE_DIR}/inc")
 
-add_executable(myExcutable main.cpp)
+add_executable(myExecutable main.cpp)
 
 # Download and unpack googletest at configure time
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
