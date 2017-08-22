@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
 
-TEST(FactorialTest, HandlesZeroInput) {
+TEST(ExampleTest, Passes) {
   EXPECT_EQ(1, 1);
 }
