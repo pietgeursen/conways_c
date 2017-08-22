@@ -1,6 +1,9 @@
-inc/boost
 CMakeFiles
 CMakeCache.txt
 cmake_install.cmake
 Makefile
-fsm
+myExecutable
+myTest
+googletest-*
+*.pc
+
