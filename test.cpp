@@ -54,7 +54,7 @@ uint8_t count_alive_neightbours(bool ** board, uint16_t row_num, uint16_t col_nu
   for (int8_t i = -1; i <= 1 ; i++) {
     for (int8_t j = -1; j <= 1 ; j++) {
       uint16_t row_index = row_num + i;
-      uint16_t col_index = col_num + i;
+      uint16_t col_index = col_num + j;
 
       if(i == 0 && j == 0)
         continue;
@@ -128,7 +128,7 @@ TEST(next_cell_state, Passes) {
   EXPECT_FALSE(next_cell_state(true, 8));
 }
 
-TEST(count_alive_neightbours, Passes) {
+TEST(count_alive_neightbours, Corner) {
   bool ** board = create_new_board(BOARD_ROWS);
 
   board[0][0] = false;
@@ -136,6 +136,9 @@ TEST(count_alive_neightbours, Passes) {
   board[1][0] = false;
   board[1][1] = false;
 
+  EXPECT_EQ(count_alive_neightbours(board, 0, 0), 0);
+
+  board[0][0] = true;
   EXPECT_EQ(count_alive_neightbours(board, 0, 0), 0);
 
   board[0][1] = true;
@@ -146,4 +149,48 @@ TEST(count_alive_neightbours, Passes) {
 
   board[1][0] = true;
   EXPECT_EQ(count_alive_neightbours(board, 0, 0), 3);
+}
+
+TEST(count_alive_neightbours, Center) {
+  bool ** board = create_new_board(BOARD_ROWS);
+
+  board[0][0] = false;
+  board[0][1] = false;
+  board[0][2] = false;
+  board[1][0] = false;
+  board[1][1] = false;
+  board[1][2] = false;
+  board[1][3] = false;
+  board[2][0] = false;
+  board[2][1] = false;
+  board[2][2] = false;
+
+  EXPECT_EQ(count_alive_neightbours(board, 1, 1), 0);
+
+  board[1][1] = true;
+  EXPECT_EQ(count_alive_neightbours(board, 1, 1), 0);
+
+  board[0][0] = true;
+  EXPECT_EQ(count_alive_neightbours(board, 1, 1), 1);
+
+  board[0][1] = true;
+  EXPECT_EQ(count_alive_neightbours(board, 1, 1), 2);
+
+  board[0][2] = true;
+  EXPECT_EQ(count_alive_neightbours(board, 1, 1), 3);
+
+  board[1][0] = true;
+  EXPECT_EQ(count_alive_neightbours(board, 1, 1), 4);
+
+  board[1][2] = true;
+  EXPECT_EQ(count_alive_neightbours(board, 1, 1), 5);
+
+  board[2][0] = true;
+  EXPECT_EQ(count_alive_neightbours(board, 1, 1), 6);
+
+  board[2][1] = true;
+  EXPECT_EQ(count_alive_neightbours(board, 1, 1), 7);
+
+  board[2][2] = true;
+  EXPECT_EQ(count_alive_neightbours(board, 1, 1), 8);
 }
