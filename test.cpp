@@ -44,7 +44,7 @@ bool next_cell_state(bool current_cell_state, uint8_t neighbour_count){
   }
 }
 
-bool is_index_out_of_bounds(uint16_t index, uint16_t array_size){
+bool is_index_out_of_bounds(int16_t index, uint16_t array_size){
   return index < 0 || index >= array_size;
 }
 
@@ -126,6 +126,12 @@ TEST(next_cell_state, Passes) {
   EXPECT_FALSE(next_cell_state(true, 6));
   EXPECT_FALSE(next_cell_state(true, 7));
   EXPECT_FALSE(next_cell_state(true, 8));
+}
+
+TEST(is_out_of_bounds, Passes) {
+  EXPECT_TRUE(is_index_out_of_bounds(-1,1));
+  EXPECT_FALSE(is_index_out_of_bounds(0,1));
+  EXPECT_TRUE(is_index_out_of_bounds(1,1));
 }
 
 TEST(count_alive_neightbours, Corner) {
