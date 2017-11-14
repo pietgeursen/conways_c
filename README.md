@@ -1,13 +1,13 @@
 # Conways in C++ 
 
-> Learn some C / C++ building conways game of life
+> Learn some C / C++ by building conways game of life
 
 ## Learning objectives
 
+- understand the difference between passing values by copy of by reference. 
 - get comfortable with the two step process of compiling and running and the errors that can happen at each stage.
 - define and call functions in c.
 - intro to memory management and use the `malloc` function.
-- understand the difference between passing values by copy of by reference. 
 
 ## Pointers and pointer syntax.
 
@@ -27,8 +27,8 @@ pointer_to_is_cool = &is_cool; //make it point to is_cool
 
 There's some new syntax here. 
 
-- The `bool * pointer_to_is_cool` bit is new. You should read the `*` as "pointer." So I read it like "Make a variable called `pointer_to_is_cool` that is a pointer to a bool."
-- The `&is_cool` bit is new too. You should read is "get the address of `is_cool`"
+- The `bool * pointer_to_is_cool` bit is new. You should read the `*` as "pointer." So I read it like: "Make a variable called `pointer_to_is_cool` that is a pointer to a bool."
+- The `&is_cool` bit is new too. You should read it is `&` as "address". So I read it like: "get the address of `is_cool`"
 
 So that translates to "Take the address of `is_cool` and store it in the variable `pointer_to_is_cool`."
 
@@ -36,7 +36,7 @@ Note that we can declare and initialise a pointer all in one line:
 
 ```
 bool is_cool = true;
-bool * pointer_to_is_cool = &is_cool;
+bool * pointer_to_is_cool = &is_cool; //this line was split in two in the previous example
 ```
 
 ### Get the value of what the pointer points to. Or "de-reference a pointer."
@@ -77,6 +77,46 @@ bool is_cool_copy = is_cool; //is_cool_copy will be **false**
 I read `*pointer_to_is_cool = false;` as "de-reference `pointer_to_is_cool` and set it to false."
 
 TLDR: When we take a copy, modifying the copy doesn't change the original. When we take a reference, we can modify the thing we have a reference to.
+
+
+Functions pass arguments by copy
+
+In js, when we pass an object to a function, it's passed by reference. We know this coz we often pass objects around and modify them as we go.
+In contrast, **c functions always pass by copy**
+
+Pass by copy
+
+```
+void add_one(uint8_t num){
+  num += 1;
+}
+
+uint8_t my_age = 34;
+add_one(my_age);
+
+// my_age is still 34
+
+```
+
+Pass a reference
+```
+void add_one(uint8_t* pointer_to_num){
+  *pointer_to_num += 1;
+}
+
+uint8_t my_age = 34;
+add_one(&my_age);
+
+// my_age is now 35
+
+```
+
+There are two reasons we might want to pass references to things. The first one we've seen: We want to be able to make a function that modifies the value of something.
+The other reason is effiency. If we pass big complex objects around by copy, the computer has to spend a lot of time making copies of that big complicated object every time the function gets called.
+
+To make that more concrete, we might want a function that can print out a conways board. We _could_ pass a board by copy, but that's just wasteful because a board could be massive, like 1000 * 1000 cells.
+
+Or we might want a function that seeds a board with random alive and dead cells. We'd need to pass a reference to a board so that our function was able to modify the board's contents.
 
 
 ## Setup
