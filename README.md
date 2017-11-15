@@ -4,11 +4,10 @@
 
 ## Learning objectives
 
-- understand the difference between passing values by copy of by reference. 
-- intro to memory management and use the `malloc` function.
-- get comfortable with the two step process of compiling and running and the errors that can happen at each stage.
-- define and call functions in c.
-- write code against tests written in the google-test framework.
+- Pointers and pointer syntax
+- Understand the difference between passing values by copy of by reference. 
+- Intro to memory management and use the `malloc` function.
+- Do some reading on stack vs heap memory (extra)
 
 ## Pointers and pointer syntax.
 
@@ -29,7 +28,7 @@ pointer_to_is_cool = &is_cool; //make it point to is_cool
 There's some new syntax here. 
 
 - The `bool * pointer_to_is_cool` bit is new. You should read the `*` as "pointer." So I read it like: "Make a variable called `pointer_to_is_cool` that is a pointer to a bool."
-- The `&is_cool` bit is new too. You should read it `&` as "address". So I read it like: "get the address of `is_cool`"
+- The `&is_cool` bit is new too. You should read `&` as "address". So I read it like: "get the address of `is_cool`"
 
 So that translates to "Take the address of `is_cool` and store it in the variable `pointer_to_is_cool`."
 
@@ -122,9 +121,9 @@ Or we might want a function that seeds a board with random alive and dead cells.
 
 Until now, we've just been declaring and initialising variables inside functions. When we do this inside a function it uses _stack_ memory. But when that function ends, that memory is freed up for other functions. Sometimes we want to make a function that creates vars that stick around after the function ends.
 
-To do this we use the `malloc` (short for memory allocation) function to reserve space on the _heap_. We tell `malloc` how much space we're gonna need when we call it and it gives us back a pointer to our memory.  
+To do this we use the `malloc` (short for memory allocation) function to reserve space on the _heap_. We pass `malloc` how much space we're gonna need and it gives us back a pointer to our memory.  
 
-when we're done with the chunk of memory we need to `free` it so that we don't just use up all of the available memory as the program goes on. (If we forget to do this it's called a memory leak.)
+when we're done with the chunk of memory we need to `free` it so that we don't use up all of the available memory as the program goes on. (If we forget to do this it's called a memory leak.)
 
 We might want to make a function that can create a new conways board:
 
@@ -137,7 +136,9 @@ bool * create_board(uint16_t board_size){
 ```
 
 - If you haven't seen casting ( the `(bool *)` bit) before, have a google. 
-- Go find the docs for malloc. What does it do if there isn't enough memory to allocate and it fails? This function could be improved to make it safer.
+- Same for `sizeof`
+- Go find the docs for malloc. What does it do if there isn't enough memory to allocate and it fails? How would you improve this function to make it safer.
+- The return type of the function should actually be `bool **` to make things easier but we can delve into that later.
 
 
 ## Setup
