@@ -5,9 +5,10 @@
 ## Learning objectives
 
 - understand the difference between passing values by copy of by reference. 
+- intro to memory management and use the `malloc` function.
 - get comfortable with the two step process of compiling and running and the errors that can happen at each stage.
 - define and call functions in c.
-- intro to memory management and use the `malloc` function.
+- write code against tests written in the google-test framework.
 
 ## Pointers and pointer syntax.
 
@@ -28,7 +29,7 @@ pointer_to_is_cool = &is_cool; //make it point to is_cool
 There's some new syntax here. 
 
 - The `bool * pointer_to_is_cool` bit is new. You should read the `*` as "pointer." So I read it like: "Make a variable called `pointer_to_is_cool` that is a pointer to a bool."
-- The `&is_cool` bit is new too. You should read it is `&` as "address". So I read it like: "get the address of `is_cool`"
+- The `&is_cool` bit is new too. You should read it `&` as "address". So I read it like: "get the address of `is_cool`"
 
 So that translates to "Take the address of `is_cool` and store it in the variable `pointer_to_is_cool`."
 
@@ -108,7 +109,6 @@ uint8_t my_age = 34;
 add_one(&my_age);
 
 // my_age is now 35
-
 ```
 
 There are two reasons we might want to pass references to things. The first one we've seen: We want to be able to make a function that modifies the value of something.
@@ -118,13 +118,38 @@ To make that more concrete, we might want a function that can print out a conway
 
 Or we might want a function that seeds a board with random alive and dead cells. We'd need to pass a reference to a board so that our function was able to modify the board's contents.
 
+## Memory management using `malloc` and `free`
+
+Until now, we've just been declaring and initialising variables inside functions. When we do this inside a function it uses _stack_ memory. But when that function ends, that memory is freed up for other functions. Sometimes we want to make a function that creates vars that stick around after the function ends.
+
+To do this we use the `malloc` (short for memory allocation) function to reserve space on the _heap_. We tell `malloc` how much space we're gonna need when we call it and it gives us back a pointer to our memory.  
+
+when we're done with the chunk of memory we need to `free` it so that we don't just use up all of the available memory as the program goes on. (If we forget to do this it's called a memory leak.)
+
+We might want to make a function that can create a new conways board:
+
+```
+bool * create_board(uint16_t board_size){
+  uint16_t bytes_needed = board_size * board_size * sizeof(bool); //calculate the number of bytes we need for a board.
+  bool * board = (bool *) malloc(bytes_needed); // allocate the memory and cast the resulting address as a pointer to a bool.
+  return board;
+}
+```
+
+- If you haven't seen casting ( the `(bool *)` bit) before, have a google. 
+- Go find the docs for malloc. What does it do if there isn't enough memory to allocate and it fails? This function could be improved to make it safer.
+
 
 ## Setup
 
-`mkdir build && cd build`
-`cmake ..`
+`$ mkdir build && cd build`
+`$ cmake ..`
 
 ## Build
 
-`cmake --build .`
+`$ make`
+
+## Run
+
+`$ ./myTest`
 
