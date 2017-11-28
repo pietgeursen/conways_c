@@ -38,5 +38,6 @@ endif()
 
 # Now simply link against gtest or gtest_main as needed. Eg
 add_executable(myTest test.cpp)
+add_executable(pointers pointers.cpp)
 target_link_libraries(myTest gtest_main)
 add_test(NAME example_test COMMAND myTest)

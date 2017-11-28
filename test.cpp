@@ -3,8 +3,7 @@
 #include <stdint.h> //gives uint8_t etc
 #include <cstdlib> //gives malloc + free
 
-#define BOARD_ROWS 4
-#define BOARD_COLUMNS BOARD_ROWS 
+#define BOARD_SIZE 4
 
 bool * allocate_memory_for_row(uint16_t row_size){
   return (bool *) malloc(sizeof(bool) * row_size);
@@ -67,6 +66,14 @@ uint8_t count_alive_neightbours(bool ** board, uint16_t board_size, uint16_t row
   }
 
   return count;
+}
+
+void calculate_next_board(bool** current_board, bool** next_board, uint16_t board_size){
+
+}
+
+void randomly_seed_board(bool ** board, uint16_t board_size){
+
 }
 
 
@@ -135,30 +142,30 @@ TEST(is_out_of_bounds, Passes) {
 }
 
 TEST(count_alive_neightbours, Corner) {
-  bool ** board = create_new_board(BOARD_ROWS);
+  bool ** board = create_new_board(BOARD_SIZE);
 
   board[0][0] = false;
   board[0][1] = false;
   board[1][0] = false;
   board[1][1] = false;
 
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 0, 0), 0);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 0, 0), 0);
 
   board[0][0] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 0, 0), 0);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 0, 0), 0);
 
   board[0][1] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 0, 0), 1);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 0, 0), 1);
 
   board[1][1] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 0, 0), 2);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 0, 0), 2);
 
   board[1][0] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 0, 0), 3);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 0, 0), 3);
 }
 
 TEST(count_alive_neightbours, Center) {
-  bool ** board = create_new_board(BOARD_ROWS);
+  bool ** board = create_new_board(BOARD_SIZE);
 
   board[0][0] = false;
   board[0][1] = false;
@@ -171,32 +178,32 @@ TEST(count_alive_neightbours, Center) {
   board[2][1] = false;
   board[2][2] = false;
 
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 1, 1), 0);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 1, 1), 0);
 
   board[1][1] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 1, 1), 0);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 1, 1), 0);
 
   board[0][0] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 1, 1), 1);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 1, 1), 1);
 
   board[0][1] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 1, 1), 2);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 1, 1), 2);
 
   board[0][2] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 1, 1), 3);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 1, 1), 3);
 
   board[1][0] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 1, 1), 4);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 1, 1), 4);
 
   board[1][2] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 1, 1), 5);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 1, 1), 5);
 
   board[2][0] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 1, 1), 6);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 1, 1), 6);
 
   board[2][1] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 1, 1), 7);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 1, 1), 7);
 
   board[2][2] = true;
-  EXPECT_EQ(count_alive_neightbours(board, BOARD_ROWS, 1, 1), 8);
+  EXPECT_EQ(count_alive_neightbours(board, BOARD_SIZE, 1, 1), 8);
 }
