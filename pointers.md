@@ -110,15 +110,23 @@ Or we might want a function that seeds a board with random alive and dead cells.
 
 Have a go at the `pointers.cpp` file. 
 
-### Setup
-
-`$ mkdir build && cd build`
-`$ cmake ..`
-
-### Build
+When you change the file, you'll need to rebuild:
 
 `$ make`
 
-### Run
+And run:
 
 `$ ./pointers`
+
+If you have errors when you build, you'll have to fix them before the compiler will make a program that you can run.
+There's a little gotcha here. If your build fails when you're developing, the last built program is still in the folder. That program reflects the state of the last time your program compiled, **not the state of the code in your file**.
+
+Try deleting the contents of hello world file. Save it, run `$ make` (which will error) and then run `$ ./hello_world`
+See how the program still runs, but the way it ran last time the build _succeeded_.
+
+## Getting used to wrestling the compiler
+
+It's **totally normal** to spend a lot of time just trying to get your code to compile. You're not dumb. Especially at the beginning.
+When I'm learning a new compiled language (I'm learning Rust at the moment) I spend **a lot** of time just trying to get it to compile. This can feel demoralising. Kindly ask your inner critic for a break and see it as valuable learning.
+
+
