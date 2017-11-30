@@ -21,11 +21,16 @@
 - cmake
 - gcc
 
+On linux:
+
+`$ sudo apt-get install cmake gcc`
+
 ## Test your dev setup
 
 ### Setup
 
 `$ mkdir build && cd build`
+
 `$ cmake ..`
 
 ### Build
@@ -83,6 +88,7 @@ Inspect a variable:
 Now let's run until we hit our next breakpoint:
 
 `(gdb) continue` or `(gdb) c` if you prefer brevity :) 
+
 `(gdb) print i`
 
 Quit when you're done:
