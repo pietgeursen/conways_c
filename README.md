@@ -1,4 +1,4 @@
-# Conways in C++ 
+# Conways in C 
 
 > Learn some C / C++ by building conways game of life
 
