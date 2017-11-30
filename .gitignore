@@ -6,4 +6,4 @@ myExecutable
 myTest
 googletest-*
 *.pc
-
+build

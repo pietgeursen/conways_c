@@ -3,10 +3,6 @@
 #include <stdint.h> //gives uint8_t etc
 #include <cstdlib> //gives malloc + free
 
-#define BOARD_SIZE 4
-
-
-
 
 bool next_cell_state(bool current_cell_state, uint8_t neighbour_count){
   if(current_cell_state){
@@ -48,10 +44,6 @@ void calculate_next_board(bool* current_board, bool* next_board, uint16_t board_
 void randomly_seed_board(bool * board, uint16_t board_size){
 
 }
-
-
-
-
 
 TEST(next_cell_state, Passes) {
   EXPECT_FALSE(next_cell_state(false, 0));

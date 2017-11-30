@@ -1,10 +1,10 @@
 cmake_minimum_required (VERSION 2.6)
-project (myExecutable)
+project (conways-c)
+
 enable_testing()
 
 include_directories ("${PROJECT_SOURCE_DIR}/inc")
 
-add_executable(myExecutable main.cpp)
 
 # Download and unpack googletest at configure time
 set(BUILD_GTEST ON)
@@ -39,10 +39,20 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
   include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
+# hello world
+add_executable(hello_world hello_world.cpp)
+
 # Pointers exercise
 add_executable(pointers pointers.cpp)
 
 # Conways exercise
+
+# or Release if you're trying to make everything go super fast when all the tests are passing.
+set(CMAKE_BUILD_TYPE Debug)
+
+# if you want to use different sized boards, change this
+add_definitions(-DBOARD_SIZE=10)
+
 add_library(is_over_populated is_over_populated.cpp)
 add_executable(is_over_populated_test is_over_populated_test.cpp)
 target_link_libraries(is_over_populated_test is_over_populated gtest_main)
