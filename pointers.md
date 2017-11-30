@@ -126,7 +126,5 @@ See how the program still runs, but the way it ran last time the build _succeede
 
 ## Getting used to wrestling the compiler
 
-It's **totally normal** to spend a lot of time just trying to get your code to compile. You're not dumb. Especially at the beginning.
-When I'm learning a new compiled language (I'm learning Rust at the moment) I spend **a lot** of time just trying to get it to compile. This can feel demoralising. Kindly ask your inner critic for a break and see it as valuable learning.
-
-
+It's **totally normal** to spend a lot of time just trying to get your code to compile. You're not dumb. 
+When I'm learning a new compiled language (I'm learning Rust at the moment) I spend **a lot** of time (maybe >50% of my time) just trying to get it to compile. This can feel demoralising. Kindly ask your inner critic for a break and see it as valuable learning.
