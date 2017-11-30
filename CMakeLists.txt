@@ -1,11 +1,14 @@
 cmake_minimum_required (VERSION 2.6)
 project (myExecutable)
+enable_testing()
 
 include_directories ("${PROJECT_SOURCE_DIR}/inc")
 
 add_executable(myExecutable main.cpp)
 
 # Download and unpack googletest at configure time
+set(BUILD_GTEST ON)
+set(BUILD_GMOCK OFF)
 configure_file(CMakeLists.txt.in googletest-download/CMakeLists.txt)
 execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
   RESULT_VARIABLE result
@@ -36,8 +39,23 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
   include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
-# Now simply link against gtest or gtest_main as needed. Eg
-add_executable(myTest test.cpp)
+# Pointers exercise
 add_executable(pointers pointers.cpp)
-target_link_libraries(myTest gtest_main)
-add_test(NAME example_test COMMAND myTest)
+
+# Conways exercise
+add_library(is_over_populated is_over_populated.cpp)
+add_executable(is_over_populated_test is_over_populated_test.cpp)
+target_link_libraries(is_over_populated_test is_over_populated gtest_main)
+
+# Uncomment below as you progress through the challenge
+add_library(is_under_populated is_under_populated.cpp)
+add_executable(is_under_populated_test is_under_populated_test.cpp)
+target_link_libraries(is_under_populated_test is_under_populated gtest_main)
+
+add_library(is_ressurectable is_ressurectable.cpp)
+add_executable(is_ressurectable_test is_ressurectable_test.cpp)
+target_link_libraries(is_ressurectable_test is_ressurectable gtest_main)
+
+add_test(NAME is_over_populated COMMAND is_over_populated_test)
+add_test(NAME is_under_populated COMMAND is_under_populated_test)
+add_test(NAME is_ressurectable COMMAND is_ressurectable_test)

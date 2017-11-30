@@ -4,17 +4,10 @@
 
 //function by copy
 //
+
 //function by ref
 //
 
-//function to create an array of booleans (think a row of conways cells) 
-//function takes an integer for the size of the array and returns a pointer to the array it created
-//We're going to need to use malloc for this. But try it first and see if it works without. If you do this without malloc, your array will be on the stack, not the heap.
-//Why do we need to use the heap not the stack here? Do some googling and see if you can explain it in your own words.
-
-
-// extra for experts:
-// Pointer arithmetic and indexes
 int main(){
   printf("%u\n", 1);
 
@@ -25,5 +18,19 @@ int main(){
   //modify the int through the pointer
   //
 
+  //call an 'ordinary' c function that takes args by copy.
+  //
+
+  //call a function that can take a reference to a number and adds one to the number passed in. Print out the number from `main` to be sure it is modified.
+  //
   
+  
+  //create an array of integers
+  //
+  //create a pointer to the first element in the array
+  //
+  //use `*` syntax and arithmetic to get the second element in the array.
+  //
+  //use `[]` syntax to get the second element in the array.
+  //
 }

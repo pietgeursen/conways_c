@@ -5,17 +5,8 @@
 
 #define BOARD_SIZE 4
 
-bool is_over_populated(uint8_t num_neighbours){
-  return num_neighbours > 3; 
-}
 
-bool is_under_populated(uint8_t num_neighbours){
-  return num_neighbours < 2; 
-}
 
-bool is_ressurectable(uint8_t num_neighbours){
-  return num_neighbours == 3; 
-}
 
 bool next_cell_state(bool current_cell_state, uint8_t neighbour_count){
   if(current_cell_state){
@@ -43,7 +34,7 @@ uint8_t count_alive_neightbours(bool* board, uint16_t board_size, uint16_t row_n
       if(is_index_out_of_bounds(row_index, board_size) || is_index_out_of_bounds(col_index, board_size))
         continue;
 
-      count += board[row_index * BOARD_SIZE + col_index] ? 1 : 0;
+      count += board[row_index * board_size + col_index] ? 1 : 0;
     }
   }
 
@@ -59,41 +50,8 @@ void randomly_seed_board(bool * board, uint16_t board_size){
 }
 
 
-TEST(is_over_populated, Passes) {
-  EXPECT_FALSE(is_over_populated(0));
-  EXPECT_FALSE(is_over_populated(1));
-  EXPECT_FALSE(is_over_populated(2));
-  EXPECT_FALSE(is_over_populated(3));
-  EXPECT_TRUE(is_over_populated(4));
-  EXPECT_TRUE(is_over_populated(5));
-  EXPECT_TRUE(is_over_populated(6));
-  EXPECT_TRUE(is_over_populated(7));
-  EXPECT_TRUE(is_over_populated(8));
-}
 
-TEST(is_under_populated, Passes) {
-  EXPECT_TRUE(is_under_populated(0));
-  EXPECT_TRUE(is_under_populated(1));
-  EXPECT_FALSE(is_under_populated(2));
-  EXPECT_FALSE(is_under_populated(3));
-  EXPECT_FALSE(is_under_populated(4));
-  EXPECT_FALSE(is_under_populated(5));
-  EXPECT_FALSE(is_under_populated(6));
-  EXPECT_FALSE(is_under_populated(7));
-  EXPECT_FALSE(is_under_populated(8));
-}
 
-TEST(is_ressurectable_populated, Passes) {
-  EXPECT_FALSE(is_ressurectable(0));
-  EXPECT_FALSE(is_ressurectable(1));
-  EXPECT_FALSE(is_ressurectable(2));
-  EXPECT_TRUE(is_ressurectable(3));
-  EXPECT_FALSE(is_ressurectable(4));
-  EXPECT_FALSE(is_ressurectable(5));
-  EXPECT_FALSE(is_ressurectable(6));
-  EXPECT_FALSE(is_ressurectable(7));
-  EXPECT_FALSE(is_ressurectable(8));
-}
 
 TEST(next_cell_state, Passes) {
   EXPECT_FALSE(next_cell_state(false, 0));
