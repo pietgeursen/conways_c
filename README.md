@@ -42,7 +42,7 @@ Run all the tests:
 
 You'll see a whole bunch of output and a prompt that starts with `(gdb)`. Let's type in help at the prompt:
 
-`(gdb) help`
+`(gdb) help` FYI you don't type the `(gdb)` bit, it's just the prompt. You'd only type `help`
 
 Let's set a breakpoint at the function we're testing. If we were testing `is_over_populated` we'd say:
 
