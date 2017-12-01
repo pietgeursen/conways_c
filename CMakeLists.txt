@@ -54,39 +54,41 @@ add_executable(pointers pointers.cpp)
 # Conways exercise
 
 # if you want to use different sized boards, change this. The `BOARD_SIZE` variable is available in all the code.
-add_definitions(-DBOARD_SIZE=300)
+add_definitions(-DBOARD_SIZE=100)
 
 # Uncomment each group below as you progress through the challenge
-add_library(is_over_populated is_over_populated.cpp)
-add_executable(is_over_populated_test is_over_populated_test.cpp)
-target_link_libraries(is_over_populated_test is_over_populated gtest_main)
 
-add_library(is_under_populated is_under_populated.cpp)
-add_executable(is_under_populated_test is_under_populated_test.cpp)
-target_link_libraries(is_under_populated_test is_under_populated gtest_main)
+#add_library(is_over_populated is_over_populated.cpp)
+#add_executable(is_over_populated_test is_over_populated_test.cpp)
+#target_link_libraries(is_over_populated_test is_over_populated gtest_main)
 
-add_library(is_ressurectable is_ressurectable.cpp)
-add_executable(is_ressurectable_test is_ressurectable_test.cpp)
-target_link_libraries(is_ressurectable_test is_ressurectable gtest_main)
+#add_library(is_under_populated is_under_populated.cpp)
+#add_executable(is_under_populated_test is_under_populated_test.cpp)
+#target_link_libraries(is_under_populated_test is_under_populated gtest_main)
 
-add_library(is_index_out_of_bounds is_index_out_of_bounds.cpp)
-add_executable(is_index_out_of_bounds_test is_index_out_of_bounds_test.cpp)
-target_link_libraries(is_index_out_of_bounds_test is_index_out_of_bounds gtest_main)
+#add_library(is_ressurectable is_ressurectable.cpp)
+#add_executable(is_ressurectable_test is_ressurectable_test.cpp)
+#target_link_libraries(is_ressurectable_test is_ressurectable gtest_main)
 
-add_library(count_alive_neighbours count_alive_neighbours.cpp)
-add_executable(count_alive_neighbours_test count_alive_neighbours_test.cpp)
-target_link_libraries(count_alive_neighbours_test count_alive_neighbours is_index_out_of_bounds gtest_main)
+#add_library(is_index_out_of_bounds is_index_out_of_bounds.cpp)
+#add_executable(is_index_out_of_bounds_test is_index_out_of_bounds_test.cpp)
+#target_link_libraries(is_index_out_of_bounds_test is_index_out_of_bounds gtest_main)
 
-add_library(next_cell_state next_cell_state.cpp)
-add_executable(next_cell_state_test next_cell_state_test.cpp)
-target_link_libraries(next_cell_state_test next_cell_state is_over_populated is_under_populated is_ressurectable gtest_main)
+#add_library(count_alive_neighbours count_alive_neighbours.cpp)
+#add_executable(count_alive_neighbours_test count_alive_neighbours_test.cpp)
+#target_link_libraries(count_alive_neighbours_test count_alive_neighbours is_index_out_of_bounds gtest_main)
 
-add_library(calculate_next_board calculate_next_board.cpp)
-add_executable(calculate_next_board_test calculate_next_board_test.cpp)
-target_link_libraries(calculate_next_board_test calculate_next_board count_alive_neighbours is_index_out_of_bounds next_cell_state is_over_populated is_under_populated is_ressurectable gtest_main)
+#add_library(next_cell_state next_cell_state.cpp)
+#add_executable(next_cell_state_test next_cell_state_test.cpp)
+#target_link_libraries(next_cell_state_test next_cell_state is_over_populated is_under_populated is_ressurectable gtest_main)
 
-add_executable(conways conways.cpp)
-target_link_libraries(conways calculate_next_board count_alive_neighbours is_index_out_of_bounds next_cell_state is_over_populated is_under_populated is_ressurectable gtest_main)
+#add_library(calculate_next_board calculate_next_board.cpp)
+#add_executable(calculate_next_board_test calculate_next_board_test.cpp)
+#target_link_libraries(calculate_next_board_test calculate_next_board count_alive_neighbours is_index_out_of_bounds next_cell_state is_over_populated is_under_populated is_ressurectable gtest_main)
+
+#add_executable(conways conways.cpp)
+#target_link_libraries(conways calculate_next_board count_alive_neighbours is_index_out_of_bounds next_cell_state is_over_populated is_under_populated is_ressurectable gtest_main)
+
 # Tests that are run by cmake. Run them with `make test` or `cmake` in the build dir.
 add_test(NAME is_over_populated COMMAND is_over_populated_test)
 add_test(NAME is_under_populated COMMAND is_under_populated_test)
