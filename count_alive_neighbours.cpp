@@ -15,7 +15,7 @@ uint8_t count_alive_neighbours(bool* board, uint16_t board_size, uint16_t row_nu
       if(is_index_out_of_bounds(row_index, board_size) || is_index_out_of_bounds(col_index, board_size))
         continue;
 
-      count += board[row_index * board_size + col_index] ? 1 : 0;
+      count += board[col_index + board_size * row_index] ? 1 : 0;
     }
   }
 

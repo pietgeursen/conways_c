@@ -81,6 +81,10 @@ add_library(next_cell_state next_cell_state.cpp)
 add_executable(next_cell_state_test next_cell_state_test.cpp)
 target_link_libraries(next_cell_state_test next_cell_state is_over_populated is_under_populated is_ressurectable gtest_main)
 
+add_library(calculate_next_board calculate_next_board.cpp)
+add_executable(calculate_next_board_test calculate_next_board_test.cpp)
+target_link_libraries(calculate_next_board_test calculate_next_board count_alive_neighbours is_index_out_of_bounds next_cell_state is_over_populated is_under_populated is_ressurectable gtest_main)
+
 # Tests that are run by cmake. Run them with `make test` or `cmake` in the build dir.
 add_test(NAME is_over_populated COMMAND is_over_populated_test)
 add_test(NAME is_under_populated COMMAND is_under_populated_test)
@@ -88,3 +92,4 @@ add_test(NAME is_ressurectable COMMAND is_ressurectable_test)
 add_test(NAME is_index_out_of_bounds COMMAND is_index_out_of_bounds_test)
 add_test(NAME next_cell_state COMMAND next_cell_state_test)
 add_test(NAME count_alive_neighbours COMMAND count_alive_neighbours_test)
+add_test(NAME calculate_next_board COMMAND calculate_next_board_test)
