@@ -5,7 +5,6 @@ enable_testing()
 
 include_directories ("${PROJECT_SOURCE_DIR}/inc")
 
-
 # Download and unpack googletest at configure time
 set(BUILD_GTEST ON)
 set(BUILD_GMOCK OFF)
@@ -39,6 +38,13 @@ if (CMAKE_VERSION VERSION_LESS 2.8.11)
   include_directories("${gtest_SOURCE_DIR}/include")
 endif()
 
+############################################################### 
+# Ignore above here
+###############################################################
+
+# or Release if you're trying to make everything go super fast when all the tests are passing. (Will break debugging)
+set(CMAKE_BUILD_TYPE Debug)
+
 # hello world
 add_executable(hello_world hello_world.cpp)
 
@@ -47,17 +53,14 @@ add_executable(pointers pointers.cpp)
 
 # Conways exercise
 
-# or Release if you're trying to make everything go super fast when all the tests are passing.
-set(CMAKE_BUILD_TYPE Debug)
-
-# if you want to use different sized boards, change this
+# if you want to use different sized boards, change this. The `BOARD_SIZE` variable is available in all the code.
 add_definitions(-DBOARD_SIZE=10)
 
+# Uncomment each group below as you progress through the challenge
 add_library(is_over_populated is_over_populated.cpp)
 add_executable(is_over_populated_test is_over_populated_test.cpp)
 target_link_libraries(is_over_populated_test is_over_populated gtest_main)
 
-# Uncomment below as you progress through the challenge
 add_library(is_under_populated is_under_populated.cpp)
 add_executable(is_under_populated_test is_under_populated_test.cpp)
 target_link_libraries(is_under_populated_test is_under_populated gtest_main)
@@ -66,6 +69,22 @@ add_library(is_ressurectable is_ressurectable.cpp)
 add_executable(is_ressurectable_test is_ressurectable_test.cpp)
 target_link_libraries(is_ressurectable_test is_ressurectable gtest_main)
 
+add_library(is_index_out_of_bounds is_index_out_of_bounds.cpp)
+add_executable(is_index_out_of_bounds_test is_index_out_of_bounds_test.cpp)
+target_link_libraries(is_index_out_of_bounds_test is_index_out_of_bounds gtest_main)
+
+add_library(count_alive_neighbours count_alive_neighbours.cpp)
+add_executable(count_alive_neighbours_test count_alive_neighbours_test.cpp)
+target_link_libraries(count_alive_neighbours_test count_alive_neighbours is_index_out_of_bounds gtest_main)
+
+add_library(next_cell_state next_cell_state.cpp)
+add_executable(next_cell_state_test next_cell_state_test.cpp)
+target_link_libraries(next_cell_state_test next_cell_state is_over_populated is_under_populated is_ressurectable gtest_main)
+
+# Tests that are run by cmake. Run them with `make test` or `cmake` in the build dir.
 add_test(NAME is_over_populated COMMAND is_over_populated_test)
 add_test(NAME is_under_populated COMMAND is_under_populated_test)
 add_test(NAME is_ressurectable COMMAND is_ressurectable_test)
+add_test(NAME is_index_out_of_bounds COMMAND is_index_out_of_bounds_test)
+add_test(NAME next_cell_state COMMAND next_cell_state_test)
+add_test(NAME count_alive_neighbours COMMAND count_alive_neighbours_test)

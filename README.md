@@ -1,6 +1,6 @@
 # Conways in C 
 
-> Learn some C / C++ by building conways game of life
+> Learn some C by building conways game of life
 
 ## Learning objectives
 
@@ -22,14 +22,15 @@
 
 ## [Intro to pointers](pointers.md)
 
-Have a play with pointers.cpp file. There are comments as suggestions for things to do in the file.
-
+Have a play with pointers.cpp file. There are suggestions in the file of things to try and code.
 
 ## Conways
 
+### Dev cycle
+  - Edit the `CmakeLists.txt` file to build the next file you're going to work on.
+  - `$ make`
 
-
-## Test
+### Testing
 
 Run one specific test
 
