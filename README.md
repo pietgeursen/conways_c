@@ -22,8 +22,6 @@
 
 ## [Intro to pointers](pointers.md)
 
-Have a play with pointers.cpp file. There are suggestions in the file of things to try and code.
-
 ## Conways
 
 ### Board data structure
