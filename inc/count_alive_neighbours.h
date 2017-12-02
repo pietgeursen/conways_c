@@ -2,6 +2,7 @@
 #define COUNT_ALIVE_NEIGHTBOURS_H
 
 #include <stdint.h> //gives uint8_t etc
+#include <stdbool.h> //gives bool
 
 #ifdef __cplusplus
 extern "C" {

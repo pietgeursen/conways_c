@@ -2,6 +2,7 @@
 #define NEXT_CELL_STATE_H 
 
 #include <stdint.h> //gives uint8_t etc
+#include <stdbool.h> //gives bool
 
 #ifdef __cplusplus
 extern "C" {

@@ -2,6 +2,7 @@
 #define IS_OVER_POPULATED_H
 
 #include <stdint.h> //gives uint8_t etc
+#include <stdbool.h> //gives bool
 
 #ifdef __cplusplus
 extern "C" {
