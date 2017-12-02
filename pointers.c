@@ -1,5 +1,5 @@
 #include <stdint.h> //gives uint8_t etc
-#include <cstdlib> //gives malloc + free
+#include <stdlib.h> //gives malloc + free
 #include <stdio.h> //give printf
 
 //function by copy
