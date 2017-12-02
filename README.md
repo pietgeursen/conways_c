@@ -80,11 +80,16 @@ Run all the tests:
 
 `$ make test` 
 
-### Revel in the glory that is _The Game of Life_
+## Revel in the glory that is _The Game of Life_
 
 `./conways`
 
-### FAQ
+## Stretch ideas
+
+- Pass an argument from the command line to set how large the board should be.
+  - You'll have to use `malloc` to get memory for your boards _at run time_ because we don't know _at compile time_ how big a board is going to be.
+
+## FAQ
 
   - Why are the tests .cpp (c++) files?
     - We're using google test which is written in c++. C++ code can interoperate with C code if you include some stuff in the C header files. _You_ don't need to worry about C++ for this exercise though so don't worry.
