@@ -4,7 +4,6 @@
 
 #include "calculate_next_board.h"
 
-
 void randomly_seed_board(bool * board, uint16_t board_size){
   for (int16_t i = 0; i < board_size ; i++) {
     for (int16_t j = 0; j < board_size ; j++) {
@@ -46,7 +45,6 @@ int32_t main(){
     current_board = next_board;
     next_board = old_current_board;
   }
-
 
   return 0;
 }

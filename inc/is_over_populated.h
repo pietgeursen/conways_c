@@ -3,6 +3,14 @@
 
 #include <stdint.h> //gives uint8_t etc
 
-bool is_over_populated(uint8_t num_neighbours);
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+  bool is_over_populated(uint8_t num_neighbours);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

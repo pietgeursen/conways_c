@@ -4,7 +4,7 @@ Pointers tend to scare people off when they first meet them. Be brave, they're a
 
 Pointer syntax:
 
-If a bool stores a value that is true of false, then **a pointer to bool stores the location in memory of a bool**.
+If a bool stores a value that is true of false, then **a pointer to bool stores the location of a bool**.
 
 ## Create a pointer variable and assign it a value
 
