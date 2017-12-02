@@ -39,7 +39,7 @@ You're going to have to work out the maths and syntax for treating this like a 2
   bool cell_at_location = board[???something with row, col and BOARD_SIZE??];
 
   // the option if you want to use pointer syntax
-  bool cell_at_location = *(board + ???);
+  bool cell_at_location = *(board + ???something with row, col and BOARD_SIZE???);
 ```
 
 ### Build files
@@ -83,3 +83,8 @@ Run all the tests:
 ### Revel in the glory that is _The Game of Life_
 
 `./conways`
+
+### FAQ
+
+  - Why are the tests .cpp (c++) files?
+    - We're using google test which is written in c++. C++ code can interoperate with C code if you include some stuff in the C header files. _You_ don't need to worry about C++ for this exercise though so don't worry.
