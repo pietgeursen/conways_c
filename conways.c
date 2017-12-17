@@ -37,13 +37,13 @@ int32_t main(){
 
   randomly_seed_board(current_board, BOARD_SIZE);
 
-  print_board(current_board, BOARD_SIZE);
+  //print_board(current_board, BOARD_SIZE);
 
 	uint32_t start = clock(), diff;
 
-  for (uint32_t i = 0; i < 1; i++) {
+  for (uint32_t i = 0; i < 10; i++) {
     calculate_next_board(current_board, next_board, BOARD_SIZE); 
-    print_board(current_board, BOARD_SIZE);
+    //print_board(current_board, BOARD_SIZE);
 
     old_current_board = current_board;
     current_board = next_board;

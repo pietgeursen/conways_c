@@ -39,8 +39,7 @@ uint8_t __attribute__ ((noinline)) asm_count_alive_nighbours(bool* board, uint16
       "ADD r0, %[col_num], #\\x\n" //calculate the x index of cell top left 
       "ADD r1, %[row_num], #\\y\n" //calculate the y index of cell top left 
 
-      "MUL r1, r1, %[board_size]\n" //calculate the y index of cell TL
-      "ADD r0, r0, r1\n" //calculate 1d index of cell TL
+      "MLA r0, r1, %[board_size], r0\n" //calculate the y index of cell TL
       "LDRB r0, [%[board],r0]\n"
 
       "ADD r2, r2, r0\n" //Accumulate the neighbour count in r2
