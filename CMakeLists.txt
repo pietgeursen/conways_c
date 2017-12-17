@@ -75,7 +75,9 @@ target_link_libraries(is_index_out_of_bounds_test is_index_out_of_bounds gtest_m
 
 add_library(count_alive_neighbours count_alive_neighbours.c)
 add_executable(count_alive_neighbours_test count_alive_neighbours_test.cpp)
+add_executable(asm_count_alive_neighbours_test asm_count_alive_neighbours_test.cpp)
 target_link_libraries(count_alive_neighbours_test count_alive_neighbours is_index_out_of_bounds gtest_main)
+target_link_libraries(asm_count_alive_neighbours_test count_alive_neighbours is_index_out_of_bounds gtest_main)
 
 add_library(next_cell_state next_cell_state.c)
 add_executable(next_cell_state_test next_cell_state_test.cpp)
@@ -94,4 +96,5 @@ add_test(NAME is_ressurectable COMMAND is_ressurectable_test)
 add_test(NAME is_index_out_of_bounds COMMAND is_index_out_of_bounds_test)
 add_test(NAME next_cell_state COMMAND next_cell_state_test)
 add_test(NAME count_alive_neighbours COMMAND count_alive_neighbours_test)
+add_test(NAME asm_count_alive_neighbours COMMAND asm_count_alive_neighbours_test)
 add_test(NAME calculate_next_board COMMAND calculate_next_board_test)
