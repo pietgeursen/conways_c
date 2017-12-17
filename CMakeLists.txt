@@ -43,7 +43,7 @@ endif()
 ###############################################################
 
 # or Release if you're trying to make everything go super fast when all the tests are passing. (Will break debugging)
-set(CMAKE_BUILD_TYPE Debug)
+set(CMAKE_BUILD_TYPE Release)
 
 # hello world
 add_executable(hello_world hello_world.c)

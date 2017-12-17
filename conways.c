@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h> //has rand funtion for random numbers
+#include <time.h>
 
 #include "calculate_next_board.h"
 
@@ -38,7 +39,9 @@ int32_t main(){
 
   print_board(current_board, BOARD_SIZE);
 
-  while(true){
+	uint32_t start = clock(), diff;
+
+  for (uint32_t i = 0; i < 1; i++) {
     calculate_next_board(current_board, next_board, BOARD_SIZE); 
     print_board(current_board, BOARD_SIZE);
 
@@ -46,7 +49,9 @@ int32_t main(){
     current_board = next_board;
     next_board = old_current_board;
   }
+	diff = clock() - start;
 
-
+	int msec = diff * 1000 / CLOCKS_PER_SEC;
+	printf("Time taken %d seconds %d milliseconds\n", msec/1000, msec%1000);
   return 0;
 }
