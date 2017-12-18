@@ -54,7 +54,7 @@ add_executable(pointers pointers.c)
 # Conways exercise
 
 # if you want to use different sized boards, change this. The `BOARD_SIZE` variable is available in all the code.
-add_definitions(-DBOARD_SIZE=300)
+add_definitions(-DBOARD_SIZE=120)
 
 # Uncomment each group below as you progress through the challenge
 add_library(is_over_populated is_over_populated.c)

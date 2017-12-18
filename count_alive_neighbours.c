@@ -9,8 +9,8 @@ uint8_t asm_count_alive_nighbours(bool* board, uint16_t board_size, uint16_t row
 
 uint8_t count_alive_neighbours(bool* board, uint16_t board_size, uint16_t row_num, uint16_t col_num){
   
-  //if(!is_edge_cell(board_size, row_num, col_num))
-    //return asm_count_alive_nighbours(board, board_size, row_num, col_num);
+  if(!is_edge_cell(board_size, row_num, col_num))
+    return asm_count_alive_nighbours(board, board_size, row_num, col_num);
 
   uint8_t count = 0;
   
