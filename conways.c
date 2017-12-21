@@ -11,6 +11,7 @@
 #include "calculate_next_board.h"
 
 #define NUM_LEDS BOARD_SIZE
+#define HUE_INCREMENT 180 / NUM_LEDS
 #define SPI_CLK_SPEED 8E6
 
 typedef struct {
@@ -36,36 +37,86 @@ void randomly_seed_board(bool * board, uint16_t board_size){
   }
 }
 
+void hsv2rgb(unsigned char *src_h, unsigned char *src_s, unsigned char *src_v, unsigned char *dst_r, unsigned char *dst_g, unsigned char *dst_b)
+{
+    float h = *src_h *   2.0f; // 0-360
+    float s = *src_s / 255.0f; // 0.0-1.0
+    float v = *src_v / 255.0f; // 0.0-1.0
+
+    float r, g, b; // 0.0-1.0
+
+    int   hi = (int)(h / 60.0f) % 6;
+    float f  = (h / 60.0f) - hi;
+    float p  = v * (1.0f - s);
+    float q  = v * (1.0f - s * f);
+    float t  = v * (1.0f - s * (1.0f - f));
+
+    switch(hi) {
+        case 0: r = v, g = t, b = p; break;
+        case 1: r = q, g = v, b = p; break;
+        case 2: r = p, g = v, b = t; break;
+        case 3: r = p, g = q, b = v; break;
+        case 4: r = t, g = p, b = v; break;
+        case 5: r = v, g = p, b = q; break;
+    }
+
+    *dst_r = (unsigned char)(r * 255); // dst_r : 0-255
+    *dst_g = (unsigned char)(g * 255); // dst_r : 0-255
+    *dst_b = (unsigned char)(b * 255); // dst_r : 0-255
+
+}
+
+typedef struct {
+  uint8_t h;
+  uint8_t s;
+  uint8_t v;
+}hsv_t;
+
+typedef struct {
+  uint8_t r;
+  uint8_t g;
+  uint8_t b;
+}rgb_t;
+
 void print_board(bool * board, uint16_t board_size, spi_ioc_transfer_t* transfers, uint32_t fd){
   const uint8_t size = 50;
-  int8_t str[size];
+  hsv_t hsv = {0, 0xFF, 0x02};
+  rgb_t rgb = {0x00};
+  uint8_t hue = 0;
 
-  //system("clear");
+  system("clear");
   for (int16_t i = 0; i < board_size ; i++) {
+    hue = 0;
     for (int16_t j = 0; j < board_size ; j++) {
+      hsv.h = hue;
+      hue += HUE_INCREMENT;
+      hsv2rgb(&hsv.h, &hsv.s, &hsv.v, &rgb.r, &rgb.g, &rgb.b);
       bool cell = board[i + board_size * j];
       const char * character = cell ? "x" : "_";
-      if(i == 0 && cell)
-        led_frames[j].blue = 0x05;
-      if(i == 1 && cell)
-        led_frames[j].red = 0x05;
-      if(i == 2 && cell)
-        led_frames[j].green = 0x05;
 
-      //printf("%s", character);
+
+      if(cell){
+        led_frames[j].red = rgb.r;
+        led_frames[j].green = rgb.g;
+        led_frames[j].blue = rgb.b;
+      }
+
+      led_frames[j].red -= led_frames[j].red == 0 ? 0 : 1;
+      led_frames[j].green -= led_frames[j].green == 0 ? 0 : 1;
+      led_frames[j].blue -= led_frames[j].blue == 0 ? 0 : 1;
+
+      printf("%s", character);
     }
-    //printf("\n");
+
+    printf("\n");
   }
 
-  for(int16_t i = 0; i < NUM_LEDS; i++){
-    if(led_frames[i].blue > 0) 
-      led_frames[i].blue-= 1;
-    if(led_frames[i].red > 0) 
-      led_frames[i].red-= 1;
-    if(led_frames[i].green > 0) 
-      led_frames[i].green-= 1;
-  }
   int32_t err = ioctl(fd, SPI_IOC_MESSAGE(3), transfers);
+  for(int16_t i = 0; i < NUM_LEDS; i++){
+    led_frames[i].red = 0;
+    led_frames[i].green = 0;
+    led_frames[i].blue = 0;
+  }
 }
 
 void init_transfers(spi_ioc_transfer_t * transfers){
